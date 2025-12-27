@@ -20,7 +20,7 @@ class AutoContainerLabelsServiceProvider extends ServiceProvider
         // Load plugin translations so Filament helper text works
         $this->loadTranslationsFrom(plugin_path('auto-container-labels', 'lang'), 'auto-container-labels');
 
-        // Apply templates to servers when they are created
-        Server::created([ApplyContainerLabels::class, 'handle']);
+        // Apply templates when a Server is retrieved
+        Server::retrieved([ApplyContainerLabels::class, 'handle']);
     }
 }
