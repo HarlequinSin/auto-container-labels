@@ -1,0 +1,17 @@
+{
+    "id": "auto-container-labels",
+    "name": "Auto Container Labels",
+    "author": "HarlequinSin",
+    "version": "1.0.0",
+    "description": "Automatically add container labels to newly-created servers using configurable templates.",
+    "category": "plugin",
+    "url": "https://github.com/HarlequinSin/AutoContainerLabels",
+    "update_url": null,
+    "namespace": "HarlequinSin\\AutoContainerLabels",
+    "class": "AutoContainerLabelsPlugin",
+    "panels": [
+        "admin"
+    ],
+    "panel_version": null,
+    "composer_packages": null
+} 
