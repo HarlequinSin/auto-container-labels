@@ -12,7 +12,12 @@ use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Support\Enums\IconSize;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TextInputColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use HarlequinSin\AutoContainerLabels\Models\ContainerLabelTemplate;
+use App\Models\Server;
 use HarlequinSin\AutoContainerLabels\Filament\Admin\Resources\ContainerLabelTemplateResource\Pages;
 
 class ContainerLabelTemplateResource extends Resource
@@ -28,15 +33,13 @@ class ContainerLabelTemplateResource extends Resource
         return $schema
             ->columns(1)
             ->components([
-                Forms\Components\TextInput::make('key')
+                TextInput::make('key')
                     ->required()
                     ->unique(ContainerLabelTemplate::class, 'key', fn ($record) => $record)
                     ->maxLength(255),
-
-                Forms\Components\Textarea::make('value')
+                TextInput::make('value')
                     ->required()
-                    ->rows(3)
-                    ->helperText(__('auto-container-labels::strings.container_label_variable_help')),
+                    ->helperText(__('auto-container-labels::strings.container_label_variables'))
             ]);
     }
 
@@ -44,12 +47,15 @@ class ContainerLabelTemplateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('key')->label('Key')->searchable(),
-                Tables\Columns\TextColumn::make('value')->label('Value')->limit(60),
-                Tables\Columns\TextColumn::make('created_at')->label('Created')->dateTime(),
+                TextColumn::make('key')
+                    ->label('Key'),
+                TextInputColumn::make('value')
+                    ->label('Value'),
+                TextColumn::make('created_at')
+                    ->label('Created')
+                    ->dateTime(),
             ])
             ->actions([
-                EditAction::make(),
                 DeleteAction::make(),
             ])
             ->bulkActions([
