@@ -5,9 +5,6 @@ namespace HarlequinSin\AutoContainerLabels\Filament\Admin\Resources;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Actions\EditAction;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -15,9 +12,7 @@ use Filament\Support\Enums\IconSize;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use HarlequinSin\AutoContainerLabels\Models\ContainerLabelTemplate;
-use App\Models\Server;
 use HarlequinSin\AutoContainerLabels\Filament\Admin\Resources\ContainerLabelTemplateResource\Pages;
 
 class ContainerLabelTemplateResource extends Resource
@@ -55,7 +50,7 @@ class ContainerLabelTemplateResource extends Resource
                     ->label('Created')
                     ->dateTime(),
             ])
-            ->actions([
+            ->recordActions([
                 DeleteAction::make(),
             ])
             ->bulkActions([
