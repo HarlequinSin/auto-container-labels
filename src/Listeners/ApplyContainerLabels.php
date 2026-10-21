@@ -4,8 +4,6 @@ namespace HarlequinSin\AutoContainerLabels\Listeners;
 
 use App\Models\Server;
 use HarlequinSin\AutoContainerLabels\Models\ContainerLabelTemplate;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class ApplyContainerLabels
 {
