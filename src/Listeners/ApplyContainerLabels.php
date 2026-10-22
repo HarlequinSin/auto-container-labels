@@ -9,7 +9,14 @@ class ApplyContainerLabels
 {
     public static function handle(Server $server): void
     {
-        $templates = ContainerLabelTemplate::all();
+        $templates = ContainerLabelTemplate::query()
+            ->where(function ($query) use ($server): void {
+                $query->whereDoesntHave('eggs')
+                    ->orWhereHas('eggs', fn($eggQuery) => $eggQuery->whereKey($server->egg_id));
+            })
+            ->with('eggs:id')
+            ->get()
+            ->sortBy(fn($template): bool => $template->eggs->isNotEmpty());
 
         $labels = [];
 
